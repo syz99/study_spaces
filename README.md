@@ -7,6 +7,6 @@ We are often not conscious of our micro-decisions such as where we choose to spe
 [our approach](https://medium.com/flutterpub/flutter-how-to-do-crud-with-postgresql-part-1-57d8d3652a31)
 
 ### Resources
-[flutter](https://flutter.dev/)
-[postgresql for dart](https://pub.dev/packages/postgres)
-[mongodb for dart](https://pub.dev/packages/mongo_dart)
+- [flutter](https://flutter.dev/)
+- [postgresql for dart](https://pub.dev/packages/postgres)
+- [mongodb for dart](https://pub.dev/packages/mongo_dart)
