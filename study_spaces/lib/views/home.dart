@@ -33,11 +33,11 @@ class HomeScreen extends StatelessWidget {
           return SpacesList(title:"example text");
         }
 //        else if (index == 1) {
-//          return FavoritesScreen();
+//          // profile
 //        } else if (index == 2) {
-//          return SearchScreen();
+//          // analytics
 //        } else {
-//          return SettingsScreen();
+//          // settings
 //        }
       },
     );
