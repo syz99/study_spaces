@@ -4,6 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:study_spaces/views/profile.dart';
 import 'package:study_spaces/views/spaces.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,8 +33,9 @@ class HomeScreen extends StatelessWidget {
         if (index == 0) {
           return SpacesList(title:"example text");
         }
-//        else if (index == 1) {
-//          // profile
+        else if (index == 1) {
+          return Profile();
+        }
 //        } else if (index == 2) {
 //          // analytics
 //        } else {
