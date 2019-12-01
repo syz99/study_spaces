@@ -5,7 +5,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:study_spaces/views/profile.dart';
+import 'package:study_spaces/views/settings.dart';
 import 'package:study_spaces/views/spaces.dart';
+
+import 'analytics.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -36,11 +39,11 @@ class HomeScreen extends StatelessWidget {
         else if (index == 1) {
           return Profile();
         }
-//        } else if (index == 2) {
-//          // analytics
-//        } else {
-//          // settings
-//        }
+         else if (index == 2) {
+          return Analytics();
+        } else {
+          return Settings();
+        }
       },
     );
   }
