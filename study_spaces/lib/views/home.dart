@@ -4,7 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:study_spaces/views/profile.dart';
+import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/settings.dart';
 import 'package:study_spaces/views/spaces.dart';
 
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book),
-          title: Text('Profile'),
+          title: Text('Map Search'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.search),
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
           return SpacesList(title:"example text");
         }
         else if (index == 1) {
-          return Profile();
+          return SearchSpaces();
         }
          else if (index == 2) {
           return Analytics();

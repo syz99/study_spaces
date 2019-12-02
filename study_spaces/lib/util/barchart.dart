@@ -62,13 +62,13 @@ class BarChart extends StatelessWidget {
   /// Create one series with sample hard coded data.
   static List<charts.Series<StudyHours, String>> _createSampleData() {
     final data = [
-      new StudyHours('Monday', 5),
-      new StudyHours('Tuesday', 0),
-      new StudyHours('Wednesday', 10),
-      new StudyHours('Thursday', 7),
-      new StudyHours('Friday', 5),
-      new StudyHours('Saturday', 2),
-      new StudyHours('Sunday', 11),
+      new StudyHours('Mon', 5),
+      new StudyHours('Tues', 0),
+      new StudyHours('Wed', 10),
+      new StudyHours('Thurs', 7),
+      new StudyHours('Fri', 5),
+      new StudyHours('Sat', 2),
+      new StudyHours('Sun', 11),
     ];
 
     return [
