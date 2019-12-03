@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  scoped_model: 1.0.1
   google_maps_flutter: 0.5.21
   charts_flutter: any
   meta: ^1.1.1

@@ -5,7 +5,7 @@ import 'package:study_spaces/data_models/reviews.dart';
 import 'package:study_spaces/data_models/spaces.dart';
 import 'package:study_spaces/data_models/user.dart';
 
-class FakeUserData {
+class FakeData {
   // Create Fake User Data
   static List<User> users = [
       User(
@@ -22,7 +22,8 @@ class FakeUserData {
             startTime: new DateTime(2019, 12, 1),
             endTime: new DateTime(2019, 12, 2),
             timestamp: new DateTime(2019, 12, 2),
-            spaceId: 2
+            spaceId: 2,
+            userId: 1
           ),
           Review(
               productivity: Productivity.NOT_PRODUCTIVE,
@@ -31,7 +32,8 @@ class FakeUserData {
               startTime: new DateTime(2019, 10, 1),
               endTime: new DateTime(2019, 10, 2),
               timestamp: new DateTime(2019, 10, 2),
-              spaceId: 1
+              spaceId: 1,
+              userId: 1
           )
         ]
       )

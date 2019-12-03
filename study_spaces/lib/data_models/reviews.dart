@@ -22,7 +22,8 @@ class Review {
     @required this.startTime,
     @required this.endTime,
     @required this.timestamp,
-    @required this.spaceId
+    @required this.spaceId,
+    @required this.userId
 
 });
 
@@ -40,5 +41,6 @@ class Review {
 
   final DateTime timestamp;
   final int spaceId;
+  final int userId;
 
 }
