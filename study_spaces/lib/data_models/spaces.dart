@@ -8,8 +8,8 @@ enum Category {
   category3
 }
 
-class Spaces {
-  Spaces({
+class StudySpace {
+  StudySpace({
     @required this.id,
     @required this.longitude,
     @required this.latitude,
@@ -28,7 +28,7 @@ class Spaces {
 
   final Category category;
 
-  final List<Reviews> reviews;
+  final List<Review> reviews;
 
 
 

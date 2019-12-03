@@ -14,15 +14,16 @@ enum StressLevel{
   LOW, AVERAGE, HIGH
 }
 
-class Reviews {
-  Reviews({
+class Review {
+  Review({
     @required this.productivity,
     @required this.noiseLevel,
     @required this.stress,
     @required this.startTime,
     @required this.endTime,
     @required this.timestamp,
-    @required this.submittedBy
+    @required this.spaceId
+
 });
 
 
@@ -38,6 +39,6 @@ class Reviews {
   final DateTime endTime;
 
   final DateTime timestamp;
+  final int spaceId;
 
-  final User submittedBy;
 }
