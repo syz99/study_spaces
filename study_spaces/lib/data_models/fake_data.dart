@@ -2,7 +2,7 @@
 
 
 import 'package:study_spaces/data_models/reviews.dart';
-import 'package:study_spaces/data_models/spaces.dart';
+import 'package:study_spaces/data_models/space.dart';
 import 'package:study_spaces/data_models/user.dart';
 
 class FakeData {
@@ -46,7 +46,7 @@ class FakeData {
       name: "Perkins",
       longitude: 36.0023,
       latitude: -78.9386,
-      category: Category.category1,
+      category: SpaceCategory.category1,
       reviews: [
         Review(
             productivity: Productivity.NOT_PRODUCTIVE,
@@ -65,7 +65,7 @@ class FakeData {
      name: "Lilly",
      longitude: 39.1679,
      latitude: -86.5190,
-     category: Category.category1,
+     category: SpaceCategory.category1,
      reviews: [
        Review(
            productivity: Productivity.PRODUCTIVE,

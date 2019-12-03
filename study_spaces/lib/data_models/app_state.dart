@@ -1,7 +1,7 @@
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/reviews.dart';
-import 'package:study_spaces/data_models/spaces.dart';
+import 'package:study_spaces/data_models/space.dart';
 import 'package:study_spaces/data_models/user.dart';
 import 'package:study_spaces/data_models/fake_data.dart';
 class AppState extends Model {
@@ -25,6 +25,7 @@ class AppState extends Model {
     // Add reviews to respective objects
     space.reviews.add(review);
     user.submittedReviews.add(review);
+    notifyListeners();
   }
 
 }
