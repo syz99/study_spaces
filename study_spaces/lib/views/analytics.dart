@@ -1,41 +1,28 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:study_spaces/util/barchart.dart';
 
-class Analytics extends StatefulWidget {
+class Analytics extends StatelessWidget {
   Analytics({Key key, this.title}) : super(key: key);
 
 
   final String title;
 
   @override
-  _AnalyticsState createState() {
-    // TODO: implement createState
-    return new _AnalyticsState();
-  }
-
-}
-
-class _AnalyticsState extends State<Analytics>{
-  @override
   Widget build(BuildContext context) {
-    return CupertinoTabView(
-      builder: (context) {
-        return CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            middle: Text('Analytics'),
-          ),
-          child: Center(
-            child: true
-                ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                'Nothing',
-              ),
-            ) : true,
-          ),
-        );
-      },
+    Widget bar = new BarChart.withSampleData();
+    // Return App
+    return new Scaffold(
+      appBar: new AppBar(title: new Text('Study Statistics')),
+      body: new Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new Column(children: <Widget>[
+            new SizedBox(height: 250.0, child: bar),
+          ])),
     );
   }
+
 }

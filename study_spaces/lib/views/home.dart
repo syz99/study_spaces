@@ -4,7 +4,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:study_spaces/views/profile.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:study_spaces/data_models/app_state.dart';
+import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/settings.dart';
 import 'package:study_spaces/views/spaces.dart';
 
@@ -13,7 +15,12 @@ import 'analytics.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
+    return ScopedModel(
+      model: AppState(),
+      child: CupertinoTabScaffold(
+
+
+    //return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: [
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.home),
@@ -21,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book),
-          title: Text('Profile'),
+          title: Text('Map Search'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.search),
@@ -34,10 +41,10 @@ class HomeScreen extends StatelessWidget {
       ]),
       tabBuilder: (context, index) {
         if (index == 0) {
-          return SpacesList(title:"example text");
+          return SpacesList();
         }
         else if (index == 1) {
-          return Profile();
+          return SearchSpaces();
         }
          else if (index == 2) {
           return Analytics();
@@ -45,6 +52,7 @@ class HomeScreen extends StatelessWidget {
           return Settings();
         }
       },
+    )
     );
   }
 }
