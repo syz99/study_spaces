@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,9 +16,11 @@ class SearchSpaces extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     //return new MapSample();
-    return new Scaffold(
-        appBar: new AppBar(title: new Text('Google Maps view')),
-        body: new Padding(
+    return new CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text('Google Maps View'),
+        ),
+        child: new Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Column(children: <Widget>[
           new SizedBox(height: 750, child: new MapSample()),
@@ -54,19 +56,33 @@ class MapSampleState extends State<MapSample> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To Duke Chapel'),
-        icon: Icon(Icons.book),
-      ),
+    return CupertinoPageScaffold(
+      child: Column(
+        children: [
+          Expanded(
+            child:
+            GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+            ),
+          ),
+
+          CupertinoButton(
+            child: const Text('To Duke Chapel'),
+            //icon: Icon(Icons.book),
+            padding: EdgeInsets.zero,
+            onPressed: _goToTheLake,
+          )
+        ]
+      )
+//      floatingActionButton: FloatingActionButton.extended(
+//        onPressed: _goToTheLake,
+//        label: Text('To Duke Chapel'),
+//        icon: Icon(Icons.book),
+//      ),
     );
   }
 
