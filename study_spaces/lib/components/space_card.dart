@@ -130,7 +130,7 @@ class SpacesCard extends StatelessWidget {
     return PressableCard(
       onPressed: () {
         Navigator.of(context).push<void>(CupertinoPageRoute(
-          builder: (context) => SpaceDetail(space.name),
+          builder: (context) => SpaceDetail(space.id),
           fullscreenDialog: true,
         ));
       },
@@ -146,7 +146,7 @@ class SpacesCard extends StatelessWidget {
                   colorFilter: null,
                   image: AssetImage(
                     //TODO: Update this to use images of each space
-                    "images/perkins.jpg"
+                    "images/perkins.png"
                   ),
                 ),
               ),

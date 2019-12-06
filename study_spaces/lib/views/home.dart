@@ -8,7 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/settings.dart';
-import 'package:study_spaces/views/spaces.dart';
+import 'package:study_spaces/views/spaces_list.dart';
 
 import 'analytics.dart';
 
