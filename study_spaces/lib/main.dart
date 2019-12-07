@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/views/home.dart';
+import 'package:study_spaces/views/login.dart';
 
 import 'data_models/app_state.dart';
 
@@ -38,7 +39,7 @@ void main() {
       child: CupertinoApp(
         debugShowCheckedModeBanner: false,
         color: Color(0xffd0d0d0),
-        home: HomeScreen(),
+        home: LoginScreen(),
       ),
     ),
   );

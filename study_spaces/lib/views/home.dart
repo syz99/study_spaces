@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
+import 'package:study_spaces/views/login.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/settings.dart';
 import 'package:study_spaces/views/spaces_list.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
          else if (index == 2) {
           return Analytics();
         } else {
-          return Settings();
+          return LoginScreen();
         }
       },
     )
