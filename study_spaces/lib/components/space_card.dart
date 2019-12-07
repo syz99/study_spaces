@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:study_spaces/data_models/space.dart';
-import 'package:study_spaces/data_models/space_detail.dart';
+import 'package:study_spaces/components/space_detail.dart';
 
 class FrostyBackground extends StatelessWidget {
   const FrostyBackground({
@@ -146,7 +146,7 @@ class SpacesCard extends StatelessWidget {
                   colorFilter: null,
                   image: AssetImage(
                     //TODO: Update this to use images of each space
-                    "images/perkins.png"
+                    space.imageUrl
                   ),
                 ),
               ),

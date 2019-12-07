@@ -27,11 +27,11 @@ class HomeScreen extends StatelessWidget {
           title: Text('Spaces'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.book),
+          icon: Icon(CupertinoIcons.search),
           title: Text('Map Search'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.search),
+          icon: Icon(CupertinoIcons.book),
           title: Text('Analytics'),
         ),
         BottomNavigationBarItem(

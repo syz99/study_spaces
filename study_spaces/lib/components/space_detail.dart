@@ -2,11 +2,12 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 //import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/components/close_button.dart';
 
-import 'app_state.dart';
+import '../data_models/app_state.dart';
 
 class SpaceDetail extends StatefulWidget {
   SpaceDetail(this.id);
@@ -32,7 +33,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             left: 0,
             child: Image.asset(
               //space.imageAssetPath,
-              "images/perkins.png", // ADD IMAGE PATH TO DATA
+              space.imageUrl, // ADD IMAGE PATH TO DATA
               fit: BoxFit.cover,
               semanticLabel: 'A background image of ${space.name}',
             ),
@@ -41,7 +42,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             top: 16,
             left: 16,
             child: SafeArea(
-              child: CloseButton(() {
+              child: CustomCloseButton(() {
                 Navigator.of(context).pop();
               }),
             ),
@@ -59,7 +60,15 @@ class _SpaceDetailsState extends State<SpaceDetail>{
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildHeader(context, appState), // Build My Header
+          _buildHeader(context, appState),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: CupertinoButton(
+              onPressed: () {},
+              child: Text("Start Studying!"),
+              color: Colors.red[300]
+            )
+          )// Build My Header
         ],
       ),
     );

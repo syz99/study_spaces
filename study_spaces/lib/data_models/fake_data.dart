@@ -47,6 +47,7 @@ class FakeData {
       longitude: 36.0023,
       latitude: -78.9386,
       category: SpaceCategory.category1,
+      imageUrl: "images/perkins.png",
       reviews: [
         Review(
             productivity: Productivity.NOT_PRODUCTIVE,
@@ -66,6 +67,7 @@ class FakeData {
      longitude: 39.1679,
      latitude: -86.5190,
      category: SpaceCategory.category1,
+     imageUrl: "images/lilly.jpg",
      reviews: [
        Review(
            productivity: Productivity.PRODUCTIVE,
@@ -77,6 +79,25 @@ class FakeData {
            spaceId: 2
        ),
      ]
+   ),
+   StudySpace(
+       id: 3,
+       name: "West Union",
+       longitude: 36.0009,
+       latitude: -78.9393,
+       category: SpaceCategory.category1,
+       imageUrl: "images/westunion.jpg",
+       reviews: [
+         Review(
+             productivity: Productivity.PRODUCTIVE,
+             noiseLevel: NoiseLevel.AVERAGE,
+             stress: StressLevel.HIGH,
+             startTime: new DateTime(2019, 12, 1),
+             endTime: new DateTime(2019, 12, 2),
+             timestamp: new DateTime(2019, 12, 2),
+             spaceId: 3
+         ),
+       ]
    )
    
  ];

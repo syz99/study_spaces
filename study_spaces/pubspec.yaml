@@ -49,6 +49,8 @@ flutter:
   assets:
     - images/dukelogo.png
     - images/perkins.png
+    - images/lilly.jpg
+    - images/westunion.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
