@@ -73,9 +73,9 @@ class FakeData {
            productivity: Productivity.PRODUCTIVE,
            noiseLevel: NoiseLevel.AVERAGE,
            stress: StressLevel.HIGH,
-           startTime: new DateTime(2019, 12, 1),
-           endTime: new DateTime(2019, 12, 2),
-           timestamp: new DateTime(2019, 12, 2),
+           startTime: new DateTime(2019, 12, 1, 15),
+           endTime: new DateTime(2019, 12, 2, 20),
+           timestamp: new DateTime(2019, 12, 2, 20),
            spaceId: 2
        ),
      ]
@@ -92,9 +92,9 @@ class FakeData {
              productivity: Productivity.PRODUCTIVE,
              noiseLevel: NoiseLevel.AVERAGE,
              stress: StressLevel.HIGH,
-             startTime: new DateTime(2019, 12, 1),
-             endTime: new DateTime(2019, 12, 2),
-             timestamp: new DateTime(2019, 12, 2),
+             startTime: new DateTime(2019, 12, 1, 12),
+             endTime: new DateTime(2019, 12, 2, 19),
+             timestamp: new DateTime(2019, 12, 2, 19),
              spaceId: 3
          ),
        ]

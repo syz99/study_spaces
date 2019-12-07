@@ -145,7 +145,6 @@ class SpacesCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   colorFilter: null,
                   image: AssetImage(
-                    //TODO: Update this to use images of each space
                     space.imageUrl
                   ),
                 ),
