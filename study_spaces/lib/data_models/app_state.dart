@@ -14,9 +14,22 @@ class AppState extends Model {
   List<User> get allUsers => List<User>.from(_users);
   List<StudySpace> get allSpaces => List<StudySpace>.from(_spaces);
 
+
   // Define method to obtain Study Space / User from id
   User getUser(int id) => _users.singleWhere((v) => v.id == id);
   StudySpace getSpace(int id) => _spaces.singleWhere((v) => v.id == id);
+
+  List<Review> getReviewsFromSpace(int spaceId) {
+    List<Review> reviews = [];
+    int userId = 1; //TODO: MAKE THIS PROGRAMATIC
+    for (Review r in getUser(userId).submittedReviews) {
+      if (r.spaceId == spaceId){
+        reviews.add(r);
+      }
+    }
+    return reviews;
+  }
+
 
   // Add review to Spaces and Users
   void addReview(Review review)  {
