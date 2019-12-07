@@ -11,36 +11,36 @@ import 'package:study_spaces/views/home.dart';
 
 import 'data_models/app_state.dart';
 
-class MyApp extends StatelessWidget{
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return PlatformApp(
-      title: 'Flutter Demo',
-//      theme: ThemeData(
-//        primarySwatch: Colors.blue,
-//      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-void main() => runApp(MyApp());
-
-//void main() {
-//  SystemChrome.setPreferredOrientations([
-//    DeviceOrientation.portraitUp,
-//    DeviceOrientation.portraitDown,
-//  ]);
-//  runApp(
-//    ScopedModel<AppState>(
-//      model: AppState(),
-//      child: CupertinoApp(
-//        debugShowCheckedModeBanner: false,
-//        color: Color(0xffd0d0d0),
-//        home: HomeScreen(),
-//      ),
-//    ),
-//  );
+//class MyApp extends StatelessWidget{
+//  // This widget is the root of your application.
+//  @override
+//  Widget build(BuildContext context) {
+//    return PlatformApp(
+//      title: 'Flutter Demo',
+////      theme: ThemeData(
+////        primarySwatch: Colors.blue,
+////      ),
+//      home: HomeScreen(),
+//    );
+//  }
 //}
+//
+//void main() => runApp(MyApp());
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(
+    ScopedModel<AppState>(
+      model: AppState(),
+      child: CupertinoApp(
+        debugShowCheckedModeBanner: false,
+        color: Color(0xffd0d0d0),
+        home: HomeScreen(),
+      ),
+    ),
+  );
+}
 

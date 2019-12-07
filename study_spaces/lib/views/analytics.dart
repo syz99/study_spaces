@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:study_spaces/util/barchart.dart';
@@ -15,9 +14,11 @@ class Analytics extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget bar = new BarChart.withSampleData();
     // Return App
-    return new Scaffold(
-      appBar: new AppBar(title: new Text('Study Statistics')),
-      body: new Padding(
+    return new CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text('Study Statistics'),
+        ),
+      child: new Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Column(children: <Widget>[
             new SizedBox(height: 250.0, child: bar),
