@@ -29,28 +29,30 @@ class SpacesList extends StatelessWidget {
             decoration: BoxDecoration(color: Color(0xffffffff)),
             child: StreamBuilder(stream: Firestore.instance.collection('spaces').snapshots(), builder: (context, snapshot){
               if(!snapshot.hasData){
-                const Text('Loading');
+                return Text('Loading');
+              }
+              else{
+                return ListView.builder(
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index){
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(dateString.toUpperCase()),
+                            Text('Study Spaces'),
+                          ],
+                        ),
+                      );
+                    }
+                    DocumentSnapshot myspace = snapshot.data.documents[index];
+                    return _generateSpaceRow(StudySpace.fromMap(myspace.data));
+                  },
+                );
               }
 
-              return ListView.builder(
-                itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index){
-                  if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(dateString.toUpperCase()),
-                          Text('Study Spaces'),
-                        ],
-                      ),
-                    );
-                  }
-                  DocumentSnapshot myspace = snapshot.data.documents[index];
-                  return _generateSpaceRow(StudySpace.fromMap(myspace.data));
-                },
-              );
             }
             ));
       },
