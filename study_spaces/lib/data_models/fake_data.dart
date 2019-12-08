@@ -19,19 +19,19 @@ class FakeData {
             productivity: Productivity.PRODUCTIVE,
             noiseLevel: NoiseLevel.AVERAGE,
             stress: StressLevel.HIGH,
-            startTime: new DateTime(2019, 12, 1),
-            endTime: new DateTime(2019, 12, 2),
-            timestamp: new DateTime(2019, 12, 2),
-            spaceId: 2,
+            startTime: new DateTime(2019, 12, 1, 14),
+            endTime: new DateTime(2019, 12, 1, 19),
+            timestamp: new DateTime(2019, 12, 2,21),
+            spaceId: 1,
             userId: 1
           ),
           Review(
               productivity: Productivity.NOT_PRODUCTIVE,
               noiseLevel: NoiseLevel.HIGH,
               stress: StressLevel.HIGH,
-              startTime: new DateTime(2019, 10, 1),
-              endTime: new DateTime(2019, 10, 2),
-              timestamp: new DateTime(2019, 10, 2),
+              startTime: new DateTime(2019, 10, 1, 12),
+              endTime: new DateTime(2019, 10, 1, 21),
+              timestamp: new DateTime(2019, 10, 2,21),
               spaceId: 1,
               userId: 1
           )

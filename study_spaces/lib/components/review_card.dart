@@ -11,7 +11,7 @@ class ReviewCard extends StatelessWidget {
 
   Widget _buildDetails() {
     return FrostyBackground(
-        color: Colors.greenAccent,
+        color: Colors.blueAccent.withOpacity(0.7),
         child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -95,6 +95,18 @@ class ReviewCard extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            TableRow(
+                              children: [
+                                TableCell(
+                                  child: Text(
+                                    'Noise Level:',
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Text(review.noiseLevel.toString()),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ],
@@ -108,20 +120,25 @@ class ReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Semantics(
-          label: 'A card background featuring ${review.spaceId}',
-          child: _buildDetails()
-        ),
+    return PressableCard(
+      onPressed: () {},
+      child:       Stack(
+        children: [
+          Semantics(
+              label: 'A card background featuring ${review.spaceId}',
+              child: _buildDetails()
+          ),
 //        Positioned(
 //          bottom: 0,
 //          left: 0,
 //          right: 0,
 //          //child: _buildDetails(),
 //        ),
-      ],
+        ],
+      )
     );
+
+
   }
 }
 

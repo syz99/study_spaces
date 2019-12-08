@@ -86,9 +86,9 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             )
           ),
          Expanded(
-             child: SizedBox(
-               //decoration: BoxDecoration(color: Color(0xffffffff)),
-               height: 200.0,
+             child: DecoratedBox(
+               decoration: BoxDecoration(color: Color(0xffffffff)),
+               //height: 200.0,
                child: ListView.builder(
                  scrollDirection: Axis.vertical,
                  itemCount: reviews.length + 2,
