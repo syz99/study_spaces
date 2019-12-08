@@ -15,9 +15,9 @@ class TimerPage extends StatefulWidget {
 
 class TimerPageState extends State<TimerPage> {
   Stopwatch stopwatch = new Stopwatch();
-  int selectedProductivity;
-  int selectedStress;
-  int selectedNoise;
+  int selectedProductivity = 0;
+  int selectedStress = 0;
+  int selectedNoise = 0;
   DateTime startTime;
   DateTime endTime;
   List<Productivity> prod = [Productivity.NOT_PRODUCTIVE, Productivity.PRODUCTIVE];
