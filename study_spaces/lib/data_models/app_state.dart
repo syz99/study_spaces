@@ -11,10 +11,10 @@ class AppState extends Model {
   List<Review> _reviews;
 
   AppState() : _users = FakeData.users,
-               _spaces = FakeData.spaces,
-              _reviews = getAllReviews();
+               _spaces = FakeData.spaces;
 
   List<User> get allUsers => List<User>.from(_users);
+  List<Review> get allReviews => List<Review>.from(_reviews);
   List<StudySpace> get allSpaces => List<StudySpace>.from(_spaces);
 
 
@@ -25,10 +25,20 @@ class AppState extends Model {
   // Get All Reviews and add them to the respective users
   //getAllReviews();
 
-  List<Review> getReviewsFromSpace(int spaceId) {
+//  List<Review> getReviewsFromSpace(int spaceId) {
+//    List<Review> reviews = [];
+//    int userId = 1; //TODO: MAKE THIS PROGRAMATIC
+//    for (Review r in _reviews) {
+//      if (r.spaceId == spaceId && r.userId == 1){
+//        reviews.add(r);
+//      }
+//    }
+//    return reviews;
+//  }
+
+  Future<List<Review>> getReviewsFromSpace(int spaceId) async {
     List<Review> reviews = [];
-    int userId = 1; //TODO: MAKE THIS PROGRAMATIC
-    for (Review r in _reviews) {
+    for(Review r in _reviews) {
       if (r.spaceId == spaceId && r.userId == 1){
         reviews.add(r);
       }
@@ -36,12 +46,11 @@ class AppState extends Model {
     return reviews;
   }
 
-   static List<Review> getAllReviews(){
-    List<Review> l = [];
+  Future<List<Review>> getAllReviews() async{
     Firestore.instance
         .collection("reviews")
         .snapshots().listen((data) => data.documents.forEach((doc) =>
-        l.add(Review(
+        _reviews.add(Review(
           startTime: (doc["startTime"] as Timestamp).toDate(),
           endTime: (doc["endTime"] as Timestamp).toDate(),
           id: doc.documentID,
@@ -53,7 +62,8 @@ class AppState extends Model {
             timestamp: (doc["endTime"] as Timestamp).toDate()
         ))
     ));
-    return l;
+    notifyListeners();
+    return _reviews;
   }
 
 

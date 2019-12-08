@@ -70,7 +70,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
   Widget build(BuildContext context) {
     final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
 
-    final List<Review> reviews = appState.getReviewsFromSpace(widget.id);
+    final List<Review> reviews = appState.getReviewsFromSpace(widget.id) as List<Review>;
 
     return CupertinoPageScaffold(
       child: Column(

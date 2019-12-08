@@ -32,9 +32,11 @@ void main() {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  final model = AppState();
+  model.getAllReviews();
   runApp(
     ScopedModel<AppState>(
-      model: AppState(),
+      model: model,
       child: CupertinoApp(
         debugShowCheckedModeBanner: false,
         color: Color(0xffd0d0d0),
