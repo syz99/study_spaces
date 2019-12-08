@@ -8,20 +8,19 @@ import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/views/home.dart';
 import 'package:study_spaces/views/login.dart';
+import 'package:study_spaces/views/login_signup.dart';
 import 'data_models/app_state.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:study_spaces/views/test.dart';
 
 //class MyApp extends StatelessWidget{
 //  // This widget is the root of your application.
 //  @override
 //  Widget build(BuildContext context) {
-//    return PlatformApp(
-//      title: 'Flutter Demo',
-////      theme: ThemeData(
-////        primarySwatch: Colors.blue,
-////      ),
-//      home: HomeScreen(),
+//    return MaterialApp(
+//      title: 'Study Spaces',
+//      theme: ThemeData(
+//        primarySwatch: Colors.blue,
+//      ),
+//      home: LoginSignupScreen(),
 //    );
 //  }
 //}
@@ -40,6 +39,7 @@ void main() {
         debugShowCheckedModeBanner: false,
         color: Color(0xffd0d0d0),
         home: LoginScreen(),
+//        home: LoginSignupScreen(),
       ),
     ),
   );

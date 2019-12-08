@@ -8,18 +8,17 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
 import 'package:study_spaces/views/login.dart';
 import 'package:study_spaces/views/search_spaces.dart';
-import 'package:study_spaces/views/settings.dart';
 import 'package:study_spaces/views/spaces_list.dart';
 
 import 'analytics.dart';
 
+/// Main screen post-login/signup
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModel(
       model: AppState(),
       child: CupertinoTabScaffold(
-
 
     //return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: [
