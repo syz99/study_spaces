@@ -1,6 +1,7 @@
 
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/material.dart';
@@ -9,13 +10,14 @@ import 'package:study_spaces/components/close_button.dart';
 import 'package:study_spaces/components/review_card.dart';
 import 'package:study_spaces/data_models/reviews.dart';
 import 'package:study_spaces/data_models/space.dart';
+import 'package:study_spaces/views/timer_page.dart';
 
 import '../data_models/app_state.dart';
 
 class SpaceDetail extends StatefulWidget {
-  SpaceDetail(this.id);
+  SpaceDetail(this.space);
 
-  int id;
+  StudySpace space;
 
 
   @override
@@ -36,8 +38,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
   }
 
   // DEFINE METHOD FOR BUILDING HEADER
-  Widget _buildHeader(BuildContext context, AppState model) {
-    final space = model.getSpace(widget.id);
+  Widget _buildHeader(BuildContext context) {
     return SizedBox(
       height: 200,
       child: Stack(
@@ -47,9 +48,9 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             left: 0,
             child: Image.asset(
               //space.imageAssetPath,
-              space.imageUrl, // ADD IMAGE PATH TO DATA
+              widget.space.imageUrl, // ADD IMAGE PATH TO DATA
               fit: BoxFit.cover,
-              semanticLabel: 'A background image of ${space.name}',
+              semanticLabel: 'A background image of ${widget.space.name}',
             ),
           ),
           Positioned(
@@ -67,20 +68,24 @@ class _SpaceDetailsState extends State<SpaceDetail>{
   }
   @override
   Widget build(BuildContext context) {
-    final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
+    //final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
 
-    final List<Review> reviews = appState.getReviewsFromSpace(widget.id);
+    //final List<Review> reviews = appState.getReviewsFromSpace(widget.id) as List<Review>;
 
     return CupertinoPageScaffold(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildHeader(context, appState),
+          _buildHeader(context),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: CupertinoButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push<void>(CupertinoPageRoute(
+                builder: (context) => TimerPage(space_id: widget.space.id),
+                fullscreenDialog: true,
+              ));},
               child: Text("Start Studying!"),
               color: Colors.red[300]
             )
@@ -89,35 +94,48 @@ class _SpaceDetailsState extends State<SpaceDetail>{
              child: DecoratedBox(
                decoration: BoxDecoration(color: Color(0xffffffff)),
                //height: 200.0,
-               child: ListView.builder(
-                 scrollDirection: Axis.vertical,
-                 itemCount: reviews.length + 2,
-                 itemBuilder: (context, index) {
-                   if (index == 0) {
-                     return Padding(
-                       padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-                       child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         children: [
-                           Text('Your Reviews for ${appState.getSpace(widget.id).name}'),
-                         ],
-                       ),
-                     );
-                   } else if (index <= reviews.length) {
-                     return _generateReviewRow(
-                         reviews[index - 1]
-                     );
-                   } else if (index <= reviews.length + 1) {
-                     return Padding(
-                       padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-                       //child: Text('Not in season'),
-                     );
-                   } else {
-                     int relativeIndex = index - (reviews.length + 2);
-                     return _generateReviewRow(reviews[relativeIndex]);
-                   }
-                 },
-               ),
+               child: StreamBuilder(stream: Firestore.instance.collection('reviews').where("spaceId", isEqualTo: widget.space.id)
+                   .where("userId", isEqualTo: 1).snapshots(), builder: (context, snapshot){
+                 if(!snapshot.hasData){
+                   return Text('Loading');
+                 }
+                 else{
+                   return ListView.builder(
+                     scrollDirection: Axis.vertical,
+                     itemCount: snapshot.data.documents.length +2,
+                     itemBuilder: (context, index) {
+                       if (index == 0) {
+                         return Padding(
+                           padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+                           child: Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               Text('Your Reviews for ${widget.space.name}'),
+                             ],
+                           ),
+                         );
+                       } else if (index <= snapshot.data.documents.length) {
+                         DocumentSnapshot myspace = snapshot.data.documents[index -1];
+                         return _generateReviewRow(
+                             Review.fromMap(myspace.data)
+                         );
+                       } else if (index <= snapshot.data.documents.length + 1) {
+                         return Padding(
+                           padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+                           //child: Text('Not in season'),
+                         );
+                       } else {
+                         int relativeIndex = index - (snapshot.data.documents.length + 2);
+                         DocumentSnapshot myspace = snapshot.data.documents[relativeIndex];
+                         return _generateReviewRow(Review.fromMap(myspace.data));
+                       }
+                     },
+                   );
+                 }
+
+               }),
+
+
              )
          ),
 

@@ -65,7 +65,12 @@ class ReviewCard extends StatelessWidget {
                                     '${review.endTime
                                         .difference(review.startTime)
                                         .inHours
-                                        .toString()} hours',
+                                        .toString()} hours, ${((review.endTime
+                                        .difference(review.startTime)
+                                        .inMinutes.toInt()) - (review.endTime
+                                        .difference(review.startTime)
+                                        .inHours.toInt() *60))
+                                        .toString()} minutes',
                                     textAlign: TextAlign.end,
                                   ),
                                 ),
@@ -79,7 +84,7 @@ class ReviewCard extends StatelessWidget {
                                   ),
                                 ),
                                 TableCell(
-                                  child: Text(review.productivity.toString()),
+                                  child: Text(review.productivity.toString().split(".")[1]),
                                 ),
                               ],
                             ),
@@ -91,7 +96,7 @@ class ReviewCard extends StatelessWidget {
                                   ),
                                 ),
                                 TableCell(
-                                  child: Text(review.stress.toString()),
+                                  child: Text(review.stress.toString().split(".")[1]),
                                 ),
                               ],
                             ),
@@ -103,7 +108,7 @@ class ReviewCard extends StatelessWidget {
                                   ),
                                 ),
                                 TableCell(
-                                  child: Text(review.noiseLevel.toString()),
+                                  child: Text(review.noiseLevel.toString().split(".")[1]),
                                 ),
                               ],
                             ),
