@@ -130,7 +130,7 @@ class SpacesCard extends StatelessWidget {
     return PressableCard(
       onPressed: () {
         Navigator.of(context).push<void>(CupertinoPageRoute(
-          builder: (context) => SpaceDetail(space.id),
+          builder: (context) => SpaceDetail(space),
           fullscreenDialog: true,
         ));
       },

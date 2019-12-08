@@ -58,8 +58,7 @@ class AppState extends Model {
           spaceId: doc["spaceId"],
           noiseLevel: NoiseLevel.HIGH, //TODO: MAKE A FUNCTION TO PARSE THESE
           productivity: Productivity.PRODUCTIVE,
-          stress: StressLevel.HIGH,
-            timestamp: (doc["endTime"] as Timestamp).toDate()
+          stress: StressLevel.HIGH
         ))
     ));
     notifyListeners();
