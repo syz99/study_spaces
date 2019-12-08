@@ -33,7 +33,6 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
   final model = AppState();
-  model.getAllReviews();
   runApp(
     ScopedModel<AppState>(
       model: model,

@@ -64,6 +64,7 @@ class Review {
     this.productivity = getProd(snapshot['productivity']) ?? '';
     this.stress = getStress(snapshot['stressLevel']) ?? '';
     this.noiseLevel = getNoise(snapshot['noiseLevel']) ?? '';
+
   }
 
 
