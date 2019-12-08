@@ -1,9 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:study_spaces/data_models/reviews.dart';
 
-enum UserType {
-  ADMIN, STUDENT
-}
 
 class User {
   User({
@@ -11,7 +8,7 @@ class User {
     @required this.name,
     @required this.email,
     @required this.phoneNumber,
-    @required this.type,
+    @required this.isAdmin,
     @required this.submittedReviews,
 });
 
@@ -19,7 +16,7 @@ class User {
   final String name;
   final String email;
   final String phoneNumber;
-  final UserType type;
+  final bool isAdmin;
   final List<Review> submittedReviews;
 }
 
