@@ -9,6 +9,7 @@ import 'package:study_spaces/components/close_button.dart';
 import 'package:study_spaces/components/review_card.dart';
 import 'package:study_spaces/data_models/reviews.dart';
 import 'package:study_spaces/data_models/space.dart';
+import 'package:study_spaces/views/timer_page.dart';
 
 import '../data_models/app_state.dart';
 
@@ -80,7 +81,11 @@ class _SpaceDetailsState extends State<SpaceDetail>{
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: CupertinoButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push<void>(CupertinoPageRoute(
+                builder: (context) => TimerPage(),
+                fullscreenDialog: true,
+              ));},
               child: Text("Start Studying!"),
               color: Colors.red[300]
             )
