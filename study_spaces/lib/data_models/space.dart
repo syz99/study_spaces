@@ -15,7 +15,6 @@ class StudySpace {
     @required this.latitude,
     @required this.name,
     @required this.category,
-    @required this.reviews,
     @required this.imageUrl
 });
 
@@ -29,7 +28,6 @@ class StudySpace {
 
   final SpaceCategory category;
 
-  final List<Review> reviews;
 
   final String imageUrl;
 

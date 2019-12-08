@@ -16,6 +16,7 @@ enum StressLevel{
 
 class Review {
   Review({
+    @required this.id,
     @required this.productivity,
     @required this.noiseLevel,
     @required this.stress,
@@ -26,6 +27,9 @@ class Review {
     @required this.userId
 
 });
+
+
+  final String id;
 
 
   final Productivity productivity;

@@ -15,26 +15,28 @@ class FakeData {
         phoneNumber: "919-753-6779",
         type: UserType.STUDENT,
         submittedReviews: [
-          Review(
-            productivity: Productivity.PRODUCTIVE,
-            noiseLevel: NoiseLevel.AVERAGE,
-            stress: StressLevel.HIGH,
-            startTime: new DateTime(2019, 12, 1, 14),
-            endTime: new DateTime(2019, 12, 1, 19),
-            timestamp: new DateTime(2019, 12, 2,21),
-            spaceId: 1,
-            userId: 1
-          ),
-          Review(
-              productivity: Productivity.NOT_PRODUCTIVE,
-              noiseLevel: NoiseLevel.HIGH,
-              stress: StressLevel.HIGH,
-              startTime: new DateTime(2019, 10, 1, 12),
-              endTime: new DateTime(2019, 10, 1, 21),
-              timestamp: new DateTime(2019, 10, 2,21),
-              spaceId: 1,
-              userId: 1
-          )
+//          Review(
+//            id:"holder",
+//            productivity: Productivity.PRODUCTIVE,
+//            noiseLevel: NoiseLevel.AVERAGE,
+//            stress: StressLevel.HIGH,
+//            startTime: new DateTime(2019, 12, 1, 14),
+//            endTime: new DateTime(2019, 12, 1, 19),
+//            timestamp: new DateTime(2019, 12, 2,21),
+//            spaceId: 1,
+//            userId: 1
+//          ),
+//          Review(
+//              id:"holder",
+//              productivity: Productivity.NOT_PRODUCTIVE,
+//              noiseLevel: NoiseLevel.HIGH,
+//              stress: StressLevel.HIGH,
+//              startTime: new DateTime(2019, 10, 1, 12),
+//              endTime: new DateTime(2019, 10, 1, 21),
+//              timestamp: new DateTime(2019, 10, 2,21),
+//              spaceId: 1,
+//              userId: 1
+//          )
         ]
       )
   ];
@@ -48,18 +50,6 @@ class FakeData {
       latitude: -78.9386,
       category: SpaceCategory.category1,
       imageUrl: "images/perkins.png",
-      reviews: [
-        Review(
-            productivity: Productivity.NOT_PRODUCTIVE,
-            noiseLevel: NoiseLevel.HIGH,
-            stress: StressLevel.HIGH,
-            startTime: new DateTime(2019, 10, 1),
-            endTime: new DateTime(2019, 10, 2),
-            timestamp: new DateTime(2019, 10, 2),
-            spaceId: 1,
-            userId: 1
-        )
-      ]
 
     ),
    StudySpace(
@@ -69,18 +59,6 @@ class FakeData {
      latitude: -86.5190,
      category: SpaceCategory.category1,
      imageUrl: "images/lilly.jpg",
-     reviews: [
-       Review(
-           productivity: Productivity.PRODUCTIVE,
-           noiseLevel: NoiseLevel.AVERAGE,
-           stress: StressLevel.HIGH,
-           startTime: new DateTime(2019, 12, 1, 15),
-           endTime: new DateTime(2019, 12, 2, 20),
-           timestamp: new DateTime(2019, 12, 2, 20),
-           spaceId: 2,
-           userId: 1
-       ),
-     ]
    ),
    StudySpace(
        id: 3,
@@ -89,18 +67,6 @@ class FakeData {
        latitude: -78.9393,
        category: SpaceCategory.category1,
        imageUrl: "images/westunion.jpg",
-       reviews: [
-         Review(
-             productivity: Productivity.PRODUCTIVE,
-             noiseLevel: NoiseLevel.AVERAGE,
-             stress: StressLevel.HIGH,
-             startTime: new DateTime(2019, 12, 1, 12),
-             endTime: new DateTime(2019, 12, 2, 19),
-             timestamp: new DateTime(2019, 12, 2, 19),
-             spaceId: 3,
-             userId: 1
-         ),
-       ]
    )
    
  ];
