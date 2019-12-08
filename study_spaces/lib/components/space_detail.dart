@@ -83,7 +83,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             child: CupertinoButton(
               onPressed: () {
                 Navigator.of(context).push<void>(CupertinoPageRoute(
-                builder: (context) => TimerPage(),
+                builder: (context) => TimerPage(space_id: widget.id),
                 fullscreenDialog: true,
               ));},
               child: Text("Start Studying!"),
