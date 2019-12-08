@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:study_spaces/data_models/space.dart';
-import 'package:study_spaces/components/space_detail.dart';
+import 'package:study_spaces/components/space_details.dart';
 
 class FrostyBackground extends StatelessWidget {
   const FrostyBackground({
@@ -130,7 +130,7 @@ class SpacesCard extends StatelessWidget {
     return PressableCard(
       onPressed: () {
         Navigator.of(context).push<void>(CupertinoPageRoute(
-          builder: (context) => SpaceDetail(space.id),
+          builder: (context) => SpaceDetails(0),
           fullscreenDialog: true,
         ));
       },

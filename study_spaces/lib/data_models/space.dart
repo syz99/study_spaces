@@ -1,13 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:study_spaces/data_models/reviews.dart';
 
-// Define enums
-enum SpaceCategory {
-  category1,
-  category2,
-  category3
-}
-
 class StudySpace {
   StudySpace({
     @required this.id,
@@ -15,23 +8,33 @@ class StudySpace {
     @required this.latitude,
     @required this.name,
     @required this.category,
-    @required this.reviews,
+    @required this.reviewIds,
     @required this.imageUrl
 });
 
-  final int id;
+  StudySpace.fromMap(Map snapshot) {
+    this.name = snapshot['name'] ?? '';
+    this.latitude =snapshot['latitude'] ?? 0;
+    this.longitude = snapshot['longitude'] ?? 0;
+    this.imageUrl = snapshot['imageUrl'] ?? '';
+    this.reviewIds = snapshot['reviews'] ?? new List<String>(0);
+    this.category = snapshot['category'] ?? '';
+  }
 
-  final String name;
 
-  final double longitude;
+  int id;
 
-  final double latitude;
+  String name;
 
-  final SpaceCategory category;
+  double longitude;
 
-  final List<Review> reviews;
+  double latitude;
 
-  final String imageUrl;
+  String category;
+
+  List<String> reviewIds;
+
+  String imageUrl;
 
 
 
