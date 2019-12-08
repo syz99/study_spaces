@@ -90,7 +90,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
                //decoration: BoxDecoration(color: Color(0xffffffff)),
                height: 200.0,
                child: ListView.builder(
-                 scrollDirection: Axis.horizontal,
+                 scrollDirection: Axis.vertical,
                  itemCount: reviews.length + 2,
                  itemBuilder: (context, index) {
                    if (index == 0) {

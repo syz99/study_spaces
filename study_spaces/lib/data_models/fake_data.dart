@@ -56,7 +56,8 @@ class FakeData {
             startTime: new DateTime(2019, 10, 1),
             endTime: new DateTime(2019, 10, 2),
             timestamp: new DateTime(2019, 10, 2),
-            spaceId: 1
+            spaceId: 1,
+            userId: 1
         )
       ]
 
@@ -76,7 +77,8 @@ class FakeData {
            startTime: new DateTime(2019, 12, 1, 15),
            endTime: new DateTime(2019, 12, 2, 20),
            timestamp: new DateTime(2019, 12, 2, 20),
-           spaceId: 2
+           spaceId: 2,
+           userId: 1
        ),
      ]
    ),
@@ -95,7 +97,8 @@ class FakeData {
              startTime: new DateTime(2019, 12, 1, 12),
              endTime: new DateTime(2019, 12, 2, 19),
              timestamp: new DateTime(2019, 12, 2, 19),
-             spaceId: 3
+             spaceId: 3,
+             userId: 1
          ),
        ]
    )
