@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:study_spaces/util/BaseAuth.dart';
 
 class LoginSignupScreen extends StatefulWidget {
-  LoginSignupScreen({Key key}) : super(key: key);
 
-//  LoginSignupScreen({this.auth, this.loginCallback});
-////
-////  final BaseAuth auth;
-////  final VoidCallback loginCallback;
+  LoginSignupScreen({this.auth, this.loginCallback});
+
+  final BaseAuth auth;
+  final VoidCallback loginCallback;
 
   @override
   State<StatefulWidget> createState() => _LoginSignupScreenState();

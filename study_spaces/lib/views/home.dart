@@ -6,14 +6,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
+import 'package:study_spaces/util/BaseAuth.dart';
 import 'package:study_spaces/views/login.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/spaces_list.dart';
 
 import 'analytics.dart';
 
+class HomeScreen extends StatefulWidget {
+
+  HomeScreen({
+    Key key,
+    this.auth,
+    this.userId,
+    this.logoutCallback,
+  }) : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+
+  @override
+  State<StatefulWidget> createState() => new HomeScreenState();
+}
+
 /// Main screen post-login/signup
-class HomeScreen extends StatelessWidget {
+class HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     return ScopedModel(
