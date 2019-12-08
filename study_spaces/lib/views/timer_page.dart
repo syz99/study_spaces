@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -24,7 +25,7 @@ class TimerPageState extends State<TimerPage> {
   List<NoiseLevel> noise = [NoiseLevel.LOW, NoiseLevel.AVERAGE, NoiseLevel.HIGH];
   List<StressLevel> stress = [StressLevel.LOW, StressLevel.AVERAGE, StressLevel.HIGH];
 
-  void resetButton(AppState state) {
+  void resetButton() {
     setState(() {
       if (stopwatch.isRunning) {
         //print("${stopwatch.elapsedMilliseconds}");
@@ -38,7 +39,7 @@ class TimerPageState extends State<TimerPage> {
     });
   }
 
-  void startButton(AppState state) {
+  void startButton() {
     setState(() {
       if (stopwatch.isRunning) {
         stopwatch.stop();
@@ -50,7 +51,7 @@ class TimerPageState extends State<TimerPage> {
     });
   }
 
-  void sendButton(AppState state) {
+  void sendButton() {
     setState(() {
       if (stopwatch.isRunning) {
         print("${stopwatch.elapsedMilliseconds}");
@@ -59,36 +60,48 @@ class TimerPageState extends State<TimerPage> {
         //stopwatch.start();
         // OBTAIN THE STOPWATCH INTERVAL, GO TO FORM SECTION
         Review review = Review(
+          id: "holder",
           productivity: prod[selectedProductivity],
           noiseLevel: noise[selectedNoise],
           stress: stress[selectedStress],
           startTime: startTime,
           endTime: endTime,
-          timestamp: endTime,
           spaceId: widget.space_id,
           userId: 1
         );
-        state.addReview(review);
+        //state.addReview(review);
+        // CONNECT TO FIRESTORE
+        DocumentReference inst = Firestore.instance.collection('reviews').document();
+        String id = inst.documentID;
+        inst.setData({ 'endTime': review.endTime,
+          'id': review.id,
+          "startTime": review.startTime,
+          "noiseLevel": review.noiseLevel.toString().split(".")[1],
+          "stressLevel": review.stress.toString().split(".")[1],
+          "productivity": review.productivity.toString().split(".")[1],
+          "userId": review.userId,
+          "spaceId": review.spaceId
+        });
         Navigator.of(context).pop();
 
       }
     });
   }
 
-  Widget buildFloatingButton(String text, Function callback, AppState state) {
+  Widget buildFloatingButton(String text, Function callback) {
     TextStyle roundTextStyle =
     const TextStyle(fontSize: 25.0, color: Colors.white);
     return new FloatingActionButton(
         heroTag: text,
         child: new Text(text, style: roundTextStyle),
-        onPressed: () => callback(state));
+        onPressed: () => callback());
   }
 
   Widget createDropdown() {}
 
   @override
   Widget build(BuildContext context) {
-    final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
+    //final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
     return new Column(
       children: <Widget>[
         Container(
@@ -114,7 +127,7 @@ class TimerPageState extends State<TimerPage> {
                     //margin: EdgeInsets.only(left:80.0, top:80.0, bottom: 10.0) ,
                       child: buildFloatingButton(
                           stopwatch.isRunning ? "reset" : "reset",
-                          resetButton, appState)),
+                          resetButton)),
                 ),
                 new SizedBox(
                   height: 75,
@@ -122,7 +135,7 @@ class TimerPageState extends State<TimerPage> {
                   child: Container(
                     //margin: EdgeInsets.only(left:80.0, top:80.0, bottom: 10.0) ,
                       child: buildFloatingButton(
-                          stopwatch.isRunning ? "stop" : "start", startButton, appState)),
+                          stopwatch.isRunning ? "stop" : "start", startButton)),
                 ),
               ]),
         ),
@@ -254,7 +267,7 @@ class TimerPageState extends State<TimerPage> {
           child: Container(
             //margin: EdgeInsets.only(left:80.0, top:80.0, bottom: 10.0) ,
               child: buildFloatingButton(
-                  stopwatch.isRunning ? "submit" : "submit", sendButton,appState)),
+                  stopwatch.isRunning ? "submit" : "submit", sendButton)),
         ),
       ],
     );

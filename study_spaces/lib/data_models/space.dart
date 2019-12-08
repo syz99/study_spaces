@@ -1,3 +1,6 @@
+
+
+
 import 'package:meta/meta.dart';
 import 'package:study_spaces/data_models/reviews.dart';
 
@@ -15,23 +18,33 @@ class StudySpace {
     @required this.latitude,
     @required this.name,
     @required this.category,
-    @required this.reviews,
+    @required this.reviewIds,
     @required this.imageUrl
-});
+  });
 
-  final int id;
+  StudySpace.fromMap(Map snapshot) {
+    this.id = snapshot["id"]  ?? 0;
+    this.name = snapshot['name'] ?? '';
+    this.latitude =snapshot['latitude'] ?? 0;
+    this.longitude = snapshot['longitude'] ?? 0;
+    this.imageUrl = snapshot['imageUrl'] ?? '';
+    this.reviewIds = snapshot['reviews'] ?? new List<String>(0);
+    this.category = snapshot['category'] ?? '';
+  }
 
-  final String name;
+  int id;
 
-  final double longitude;
+  String name;
 
-  final double latitude;
+  double longitude;
 
-  final SpaceCategory category;
+  double latitude;
 
-  final List<Review> reviews;
+  String category;
 
-  final String imageUrl;
+  List<String> reviewIds;
+
+  String imageUrl;
 
 
 
