@@ -13,7 +13,7 @@ class FakeData {
         name: "José San Martin",
         email: "josesm919@gmail.com",
         phoneNumber: "919-753-6779",
-        type: UserType.STUDENT,
+        isAdmin: false,
         submittedReviews: [
           Review(
             productivity: Productivity.PRODUCTIVE,
