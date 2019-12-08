@@ -65,7 +65,12 @@ class ReviewCard extends StatelessWidget {
                                     '${review.endTime
                                         .difference(review.startTime)
                                         .inHours
-                                        .toString()} hours',
+                                        .toString()} hours, ${((review.endTime
+                                        .difference(review.startTime)
+                                        .inMinutes.toInt()) - (review.endTime
+                                        .difference(review.startTime)
+                                        .inHours.toInt() *60))
+                                        .toString()} minutes',
                                     textAlign: TextAlign.end,
                                   ),
                                 ),
