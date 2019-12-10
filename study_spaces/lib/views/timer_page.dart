@@ -8,8 +8,9 @@ import 'package:study_spaces/data_models/reviews.dart';
 import 'package:study_spaces/util/timer_text.dart';
 
 class TimerPage extends StatefulWidget {
-  TimerPage({Key key, this.space_id}) : super(key: key);
+  TimerPage(this.space_id, this.userId);
   String space_id;
+  String userId;
 
   TimerPageState createState() => new TimerPageState();
 }
@@ -67,14 +68,14 @@ class TimerPageState extends State<TimerPage> {
           startTime: startTime,
           endTime: endTime,
           spaceId: widget.space_id,
-          userId: 1
+          userId: widget.userId
         );
         //state.addReview(review);
         // CONNECT TO FIRESTORE
         DocumentReference inst = Firestore.instance.collection('reviews').document();
         String id = inst.documentID;
         inst.setData({ 'endTime': review.endTime,
-          'id': review.id,
+          'id': id,
           "startTime": review.startTime,
           "noiseLevel": review.noiseLevel.toString().split(".")[1],
           "stressLevel": review.stress.toString().split(".")[1],

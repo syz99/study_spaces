@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddSpace extends StatefulWidget {
+  AddSpace(this.userId);
+  String userId;
   @override
   State<StatefulWidget> createState() => _MyAddSpaceState();
 }
@@ -37,6 +39,7 @@ class _MyAddSpaceState extends State<AddSpace> {
           'longitude': double.parse(_myLongitudeField.text),
           'name': _myNameField.text,
           'description': _myDescriptionField.text,
+          'userUID': widget.userId
         });
         _formKey.currentState.reset();
         Navigator.of(context).pop();
