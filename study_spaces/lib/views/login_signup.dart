@@ -32,8 +32,10 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
 
     if (validateAndSave()) {
       String userId = "";
+      print("pre try catch");
       try {
         if (_isLoginForm) {
+          print("_isLoginForm true");
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
         } else {
@@ -63,8 +65,10 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
   /// Validates the form login/singup inputs
   bool validateAndSave() {
     final form = _formKey.currentState;
+    print("pre validate()");
     if (form.validate()) {
       form.save();
+      print("validate hit");
       return true;
     }
     return false;

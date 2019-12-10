@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
 import 'package:study_spaces/util/authentication.dart';
 import 'package:study_spaces/views/login.dart';
+import 'package:study_spaces/views/login_signup.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/spaces_list.dart';
 
@@ -33,14 +34,14 @@ class HomeScreen extends StatefulWidget {
 /// Main screen post-login/signup
 class HomeScreenState extends State<HomeScreen>{
 
-//  signOut() async {
-//    try {
-//      await widget.auth.signOut();
-//      widget.logoutCallback();
-//    } catch (e) {
-//      print(e);
-//    }
-//  }
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,8 @@ class HomeScreenState extends State<HomeScreen>{
            else if (index == 2) {
             return Analytics();
           } else {
-            return LoginScreen();
+             signOut();
+             return LoginSignupScreen();
           }
         },
       )
