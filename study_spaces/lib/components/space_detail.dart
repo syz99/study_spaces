@@ -66,6 +66,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     //final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
