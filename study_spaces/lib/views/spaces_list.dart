@@ -7,6 +7,8 @@ import 'package:study_spaces/data_models/app_state.dart';
 import 'package:study_spaces/data_models/space.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'add_space.dart';
+
 class SpacesList extends StatelessWidget {
   Widget _generateSpaceRow(StudySpace space) {
     return Padding(
@@ -54,7 +56,12 @@ class SpacesList extends StatelessWidget {
                                                           side: BorderSide(color: Colors.red)),
                                                       child: new Text('Add a new space'),
                                                       textColor: Colors.red,
-                                                      onPressed: () {},))),
+                                                      onPressed: () {
+                                                        Navigator.of(context).push<void>(CupertinoPageRoute(
+                                                          builder: (context) => AddSpace(),
+                                                          fullscreenDialog: true,
+                                                        ));
+                                                      },))),
 
                                           ]),
                                     ),
