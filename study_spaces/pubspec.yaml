@@ -57,6 +57,10 @@ flutter:
     - images/perkins.png
     - images/lilly.jpg
     - images/westunion.jpg
+    - images/edge.jpg
+    - images/bc.jpeg
+    - images/marketplace.jpg
+    - images/default.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

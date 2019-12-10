@@ -23,16 +23,16 @@ class StudySpace {
   });
 
   StudySpace.fromMap(Map snapshot) {
-    this.id = snapshot["id"]  ?? 0;
+    this.id = snapshot["id"]  ?? '';
     this.name = snapshot['name'] ?? '';
     this.latitude =snapshot['latitude'] ?? 0;
     this.longitude = snapshot['longitude'] ?? 0;
-    this.imageUrl = snapshot['imageUrl'] ?? '';
+    this.imageUrl = snapshot['imageUrl'] ?? 'images/default.jpg';
     this.reviewIds = snapshot['reviews'] ?? new List<String>(0);
     this.category = snapshot['category'] ?? '';
   }
 
-  int id;
+  String id;
 
   String name;
 

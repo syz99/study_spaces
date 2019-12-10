@@ -3,6 +3,7 @@ import 'dart:async';
 //import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -144,12 +145,19 @@ class MapSampleState extends State<MapSample> {
             }
           ),
           ),
-          CupertinoButton(
-            child: const Text('To Duke Chapel'),
-            //icon: Icon(Icons.book),
-            padding: EdgeInsets.zero,
-            onPressed: _goToTheChapel,
-          )
+          FlatButton(
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(18.0),
+                side: BorderSide(color: Colors.blue)),
+            child: new Text('To Duke Chapel'),
+            textColor: Colors.blue,
+            onPressed: _goToTheChapel),
+//          CupertinoButton(
+//            child: const Text('To Duke Chapel'),
+//            //icon: Icon(Icons.book),
+//            padding: EdgeInsets.zero,
+//            onPressed: _goToTheChapel,
+//          )
         ]
       )
 //      floatingActionButton: FloatingActionButton.extended(

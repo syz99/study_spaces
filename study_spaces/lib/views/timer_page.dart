@@ -9,7 +9,7 @@ import 'package:study_spaces/util/timer_text.dart';
 
 class TimerPage extends StatefulWidget {
   TimerPage({Key key, this.space_id}) : super(key: key);
-  int space_id;
+  String space_id;
 
   TimerPageState createState() => new TimerPageState();
 }
