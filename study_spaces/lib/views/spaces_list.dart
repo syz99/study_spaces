@@ -47,10 +47,19 @@ class SpacesList extends StatelessWidget {
                         ),
                       );
                     }
-                    DocumentSnapshot myspace = snapshot.data.documents[index];
-                    return _generateSpaceRow(StudySpace.fromMap(myspace.data));
+                   else if (index <= snapshot.data.documents.length) {
+                      DocumentSnapshot myspace = snapshot.data.documents[index];
+                      return _generateSpaceRow(StudySpace.fromMap(myspace.data));
+                    }
+                   else{
+                      int relativeIndex = index - (snapshot.data.documents.length + 2);
+                      DocumentSnapshot myspace = snapshot.data.documents[relativeIndex];
+                      return _generateSpaceRow(StudySpace.fromMap(myspace.data));
+                    }
+
                   },
                 );
+
               }
 
             }

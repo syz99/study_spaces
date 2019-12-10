@@ -102,7 +102,9 @@ class TimerPageState extends State<TimerPage> {
   @override
   Widget build(BuildContext context) {
     //final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
-    return new Column(
+    return new CupertinoPageScaffold(
+      backgroundColor: Colors.white,
+        child: Column(
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(left: 0.0, top: 40.0, right: 350.0),
@@ -270,6 +272,7 @@ class TimerPageState extends State<TimerPage> {
                   stopwatch.isRunning ? "submit" : "submit", sendButton)),
         ),
       ],
+    )
     );
   }
 }
