@@ -100,9 +100,10 @@ class _PressableCardState extends State<PressableCard> {
 }
 
 class SpacesCard extends StatelessWidget {
-  SpacesCard(this.space);
+  SpacesCard(this.space, this.userId);
   // The Space Name to be displayed in the card
   final StudySpace space;
+  String userId;
 
   Widget _buildDetails() {
     return FrostyBackground(
@@ -130,7 +131,7 @@ class SpacesCard extends StatelessWidget {
     return PressableCard(
       onPressed: () {
         Navigator.of(context).push<void>(CupertinoPageRoute(
-          builder: (context) => SpaceDetail(space),
+          builder: (context) => SpaceDetail(space, userId),
           fullscreenDialog: true,
         ));
       },

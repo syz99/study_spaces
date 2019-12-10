@@ -15,9 +15,10 @@ import 'package:study_spaces/views/timer_page.dart';
 import '../data_models/app_state.dart';
 
 class SpaceDetail extends StatefulWidget {
-  SpaceDetail(this.space);
+  SpaceDetail(this.space, this.userId);
 
   StudySpace space;
+  String userId;
 
 
   @override
@@ -84,7 +85,7 @@ class _SpaceDetailsState extends State<SpaceDetail>{
             child: CupertinoButton(
               onPressed: () {
                 Navigator.of(context).push<void>(CupertinoPageRoute(
-                builder: (context) => TimerPage(space_id: widget.space.id),
+                builder: (context) => TimerPage(widget.space.id, widget.userId),
                 fullscreenDialog: true,
               ));},
               child: Text("Start Studying!"),
@@ -96,9 +97,9 @@ class _SpaceDetailsState extends State<SpaceDetail>{
                decoration: BoxDecoration(color: Color(0xffffffff)),
                //height: 200.0,
                child: StreamBuilder(stream: Firestore.instance.collection('reviews').where("spaceId", isEqualTo: widget.space.id)
-                   .where("userId", isEqualTo: 1).snapshots(), builder: (context, snapshot){
+                   .where("userId", isEqualTo: widget.userId).orderBy('endTime').snapshots(), builder: (context, snapshot){
                  if(!snapshot.hasData){
-                   return Text('Loading');
+                   return Text('No Reviews for ${widget.space.name} yet.');
                  }
                  else{
                    return ListView.builder(

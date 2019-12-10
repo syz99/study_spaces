@@ -72,10 +72,10 @@ class HomeScreenState extends State<HomeScreen>{
          ),
         tabBuilder: (context, index) {
           if (index == 0) {
-            return SpacesList();
+            return SpacesList(widget.userId);
           }
           else if (index == 1) {
-            return SearchSpaces();
+            return SearchSpaces(widget.userId);
           }
            else if (index == 2) {
             return Analytics();

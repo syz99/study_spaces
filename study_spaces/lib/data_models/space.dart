@@ -19,7 +19,8 @@ class StudySpace {
     @required this.name,
     @required this.category,
     @required this.reviewIds,
-    @required this.imageUrl
+    @required this.imageUrl,
+    this.userUID
   });
 
   StudySpace.fromMap(Map snapshot) {
@@ -30,9 +31,12 @@ class StudySpace {
     this.imageUrl = snapshot['imageUrl'] ?? 'images/default.jpg';
     this.reviewIds = snapshot['reviews'] ?? new List<String>(0);
     this.category = snapshot['category'] ?? '';
+    this.userUID = snapshot['userUID'] ?? 'ADMIN_SPACE';
   }
 
   String id;
+
+  String userUID;
 
   String name;
 

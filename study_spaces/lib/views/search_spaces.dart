@@ -9,12 +9,14 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:study_spaces/components/space_detail.dart';
 import 'package:study_spaces/data_models/space.dart';
+import 'package:async/async.dart';
 
 //api key = AIzaSyDQKkNsepBOaIiSSp4OUIFZGKmCOFTrho4
 class SearchSpaces extends StatelessWidget {
-  SearchSpaces({Key key, this.title}) : super(key: key);
+  SearchSpaces(this.userId);
 
-  final String title;
+  //final String title;
+  String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class SearchSpaces extends StatelessWidget {
         child: new Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Column(children: <Widget>[
-          new SizedBox(height: 750, child: new MapSample()),
+          new SizedBox(height: 750, child: new MapSample(userId)),
     ])),
     );
   }
@@ -35,6 +37,8 @@ class SearchSpaces extends StatelessWidget {
 }
 
 class MapSample extends StatefulWidget {
+  MapSample(this.userId);
+  String userId;
   @override
   State<MapSample> createState() => MapSampleState();
 }
@@ -89,15 +93,23 @@ class MapSampleState extends State<MapSample> {
     _handleTap(StudySpace space) {
       print("Hello");
       Navigator.of(context).push<void>(CupertinoPageRoute(
-        builder: (context) => SpaceDetail(space),
+        builder: (context) => SpaceDetail(space, widget.userId),
         fullscreenDialog: true,
       ));
+    }
+
+    Stream<List<QuerySnapshot>> getData() {
+      Stream stream1 = Firestore.instance.collection('spaces').where('userId', isEqualTo: null).snapshots();
+      Stream stream2 = Firestore.instance.collection('spaces').where('userId', isEqualTo: widget.userId).snapshots();
+      return StreamZip([stream1, stream2]);
     }
     return CupertinoPageScaffold(
       child: Column(
         children: [
           Expanded(
-            child: StreamBuilder(stream: Firestore.instance.collection('spaces').snapshots(), builder: (context, snapshot){
+            child: StreamBuilder(
+                stream: getData(),
+                builder: (context, snapshot){
               if(!snapshot.hasData){
                 return Text('Loading');
               }
@@ -106,7 +118,10 @@ class MapSampleState extends State<MapSample> {
                 return Text("Loading");
               }
               else{
-                for(var document in snapshot.data.documents){
+                for (DocumentSnapshot doc in snapshot.data[1].documents){
+                  snapshot.data[0].documents.add(doc);
+                }
+                for(var document in snapshot.data[0].documents){
                   var doc = document.data;
                   Marker marker = Marker(
                     markerId: MarkerId(doc['name']),

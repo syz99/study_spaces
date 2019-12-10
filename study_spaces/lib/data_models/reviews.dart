@@ -84,6 +84,6 @@ class Review {
 
    DateTime endTime;
    String spaceId;
-   int userId;
+   String userId;
 
 }
