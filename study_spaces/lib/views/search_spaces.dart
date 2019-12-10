@@ -9,7 +9,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class SearchSpaces extends StatelessWidget {
   SearchSpaces({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override

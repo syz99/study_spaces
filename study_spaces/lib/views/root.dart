@@ -1,8 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:study_spaces/util/BaseAuth.dart';
+import 'package:study_spaces/util/authentication.dart';
 import 'package:study_spaces/views/home.dart';
 import 'package:study_spaces/views/login_signup.dart';
 
@@ -13,7 +11,6 @@ enum AuthStatus {
 }
 
 class RootScreen extends StatefulWidget {
-
   RootScreen({this.auth});
 
   final BaseAuth auth;
@@ -76,7 +73,7 @@ class RootScreenState extends State<RootScreen> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return new HomeScreen(
+          return HomeScreen(
             auth: widget.auth,
             userId: _userId,
             logoutCallback: logoutCallback,

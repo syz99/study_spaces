@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_spaces/util/BaseAuth.dart';
+import 'package:study_spaces/util/authentication.dart';
 
 class LoginSignupScreen extends StatefulWidget {
 
@@ -9,10 +9,10 @@ class LoginSignupScreen extends StatefulWidget {
   final VoidCallback loginCallback;
 
   @override
-  State<StatefulWidget> createState() => _LoginSignupScreenState();
+  State<StatefulWidget> createState() => LoginSignupScreenState();
 }
 
-class _LoginSignupScreenState extends State<LoginSignupScreen> {
+class LoginSignupScreenState extends State<LoginSignupScreen> {
 
   final _formKey = new GlobalKey<FormState>();
 
@@ -128,10 +128,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
       String userId = "";
       try {
         if (_isLoginForm) {
-//          userId = await widget.auth.signIn(_email, _password);
+          userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
         } else {
-//          userId = await widget.auth.signUp(_email, _password);
+          userId = await widget.auth.signUp(_email, _password);
+          toggleFormMode();
           print('Signed up user: $userId');
         }
 
@@ -140,7 +141,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
         });
 
         if (userId.length > 0 && userId != null && _isLoginForm) {
-//          widget.loginCallback();
+          widget.loginCallback();
         }
       } catch (e) {
         print('Error: $e');
@@ -194,6 +195,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           fontWeight: FontWeight.w300,
         ),
       );
+    } else {
+      return new Container(
+        height: 0.0,
+      );
     }
   }
 
@@ -235,8 +240,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   /// Returns CircularProgresIndicator if loading is true
   Widget showCircularProgress() {
-    return _isLoading
-        ? Center(child: CircularProgressIndicator())
-        : Container(height: 0.0, width: 0.0,);
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
+    );
   }
 }

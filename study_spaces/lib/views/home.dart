@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:study_spaces/data_models/app_state.dart';
-import 'package:study_spaces/util/BaseAuth.dart';
+import 'package:study_spaces/util/authentication.dart';
 import 'package:study_spaces/views/login.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/spaces_list.dart';
