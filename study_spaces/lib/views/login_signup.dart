@@ -23,19 +23,51 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
   bool _isLoginForm;
   bool _isLoading;
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Login"),
-      ),
-      body: Stack(
-        children: <Widget>[
-          showForm(),
-          showCircularProgress(),
-        ],
-      ),
-    );
+  /// Validates user entered input in login/signup
+  void validateAndSubmit() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+    });
+
+    if (validateAndSave()) {
+      String userId = "";
+      try {
+        if (_isLoginForm) {
+          userId = await widget.auth.signIn(_email, _password);
+          print('Signed in: $userId');
+        } else {
+          userId = await widget.auth.signUp(_email, _password);
+          toggleFormMode();
+          print('Signed up user: $userId');
+        }
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (userId.length > 0 && userId != null && _isLoginForm) {
+          widget.loginCallback();
+        }
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.message;
+          _formKey.currentState.reset();
+        });
+      }
+    }
+  }
+
+  /// Validates the form login/singup inputs
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
   }
 
   /// initializes variables
@@ -53,10 +85,33 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
     _errorMessage = "";
   }
 
+  /// Toggles state of _isLoginForm (if not then it is sign up mode)
+  void toggleFormMode() {
+    resetForm();
+    setState(() {
+      _isLoginForm = !_isLoginForm;
+    });
+  }
+  /// overridden build function
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Study Spaces Login"),
+      ),
+      body: Stack(
+        children: <Widget>[
+          showForm(),
+          showCircularProgress(),
+        ],
+      ),
+    );
+  }
+
   /// Builds entire Login/Signup UI
   Widget showForm() {
     return new Container(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.fromLTRB(45.0, 20.0, 45.0, 0.0),
       child: new Form(
         key: _formKey,
         child: new ListView(
@@ -117,53 +172,6 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
     );
   }
 
-  /// Validates user entered input in login/signup
-  void validateAndSubmit() async {
-    setState(() {
-      _errorMessage = "";
-      _isLoading = true;
-    });
-
-    if (validateAndSave()) {
-      String userId = "";
-      try {
-        if (_isLoginForm) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
-        } else {
-          userId = await widget.auth.signUp(_email, _password);
-          toggleFormMode();
-          print('Signed up user: $userId');
-        }
-
-        setState(() {
-          _isLoading = false;
-        });
-
-        if (userId.length > 0 && userId != null && _isLoginForm) {
-          widget.loginCallback();
-        }
-      } catch (e) {
-        print('Error: $e');
-        setState(() {
-          _isLoading = false;
-          _errorMessage = e.message;
-          _formKey.currentState.reset();
-        });
-      }
-    }
-  }
-
-  /// Validates the form login/singup inputs
-  bool validateAndSave() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
-
   /// Builds secondary button for toggling between login/signup modes
   Widget showSecondaryButton() {
     return new FlatButton(
@@ -173,14 +181,6 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
       ),
       onPressed: toggleFormMode
     );
-  }
-
-  /// Toggles state of _isLoginForm (if not then it is sign up mode)
-  void toggleFormMode() {
-    resetForm();
-    setState(() {
-      _isLoginForm = !_isLoginForm;
-    });
   }
 
   /// Builds error messages from Firebase or invalid input

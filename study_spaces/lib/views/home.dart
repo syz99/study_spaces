@@ -32,6 +32,16 @@ class HomeScreen extends StatefulWidget {
 
 /// Main screen post-login/signup
 class HomeScreenState extends State<HomeScreen>{
+
+//  signOut() async {
+//    try {
+//      await widget.auth.signOut();
+//      widget.logoutCallback();
+//    } catch (e) {
+//      print(e);
+//    }
+//  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModel(
@@ -39,38 +49,40 @@ class HomeScreenState extends State<HomeScreen>{
       child: CupertinoTabScaffold(
 
     //return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.home),
-          title: Text('Spaces'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.search),
-          title: Text('Map Search'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.book),
-          title: Text('Analytics'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.settings),
-          title: Text('Settings'),
-        ),
-      ]),
-      tabBuilder: (context, index) {
-        if (index == 0) {
-          return SpacesList();
-        }
-        else if (index == 1) {
-          return SearchSpaces();
-        }
-         else if (index == 2) {
-          return Analytics();
-        } else {
-          return LoginScreen();
-        }
-      },
-    )
+        tabBar: CupertinoTabBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.home),
+                title: Text('Spaces'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.search),
+                title: Text('Map Search'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.book),
+                title: Text('Analytics'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.settings),
+                title: Text('Log Out'),
+              ),
+            ],
+         ),
+        tabBuilder: (context, index) {
+          if (index == 0) {
+            return SpacesList();
+          }
+          else if (index == 1) {
+            return SearchSpaces();
+          }
+           else if (index == 2) {
+            return Analytics();
+          } else {
+            return LoginScreen();
+          }
+        },
+      )
     );
   }
 }
