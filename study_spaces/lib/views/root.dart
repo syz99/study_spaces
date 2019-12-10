@@ -87,8 +87,8 @@ class RootScreenState extends State<RootScreen> {
 
   /// builds waiting screen for when user auth is not either loggin or out
   Widget buildWaitingScreen() {
-    return Scaffold(
-      body: Container(
+    return CupertinoPageScaffold(
+      child: Container(
         alignment: Alignment.center,
         child: CircularProgressIndicator(),
       )

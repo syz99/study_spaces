@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_spaces/util/authentication.dart';
 
 class LoginSignupScreen extends StatefulWidget {
-
   LoginSignupScreen({this.auth, this.loginCallback});
 
   final BaseAuth auth;
@@ -13,7 +13,6 @@ class LoginSignupScreen extends StatefulWidget {
 }
 
 class LoginSignupScreenState extends State<LoginSignupScreen> {
-
   final _formKey = new GlobalKey<FormState>();
 
   String _email;
@@ -96,14 +95,15 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
       _isLoginForm = !_isLoginForm;
     });
   }
+
   /// overridden build function
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Study Spaces Login"),
+    return new CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: new Text("Study Spaces Login"),
       ),
-      body: Stack(
+      child: Stack(
         children: <Widget>[
           showForm(),
           showCircularProgress(),
@@ -133,23 +133,32 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
     );
   }
 
+  // WRITTEN BY JOSE: TESTS TO SEE IF FIELDS ARE EMPTY
+  bool fieldsAreEmpty(){
+    return (_myEmailField.text.isEmpty | _myPasswordField.text.isEmpty);
+  }
+
+  TextEditingController _myEmailField = TextEditingController();
+
   /// Builds TextFormField for email inputs
   Widget showEmailInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
-      child: new TextFormField(
-        maxLines: 1, // input cannot exceed 1 line
+      child: new CupertinoTextField(
+        controller: _myEmailField,
+        prefix: Icon(Icons.mail, color: Colors.grey),
+        placeholder: "Email",
+        maxLines: 1,
+        // input cannot exceed 1 line
         keyboardType: TextInputType.emailAddress,
         autofocus: false,
-        decoration: new InputDecoration(
-          hintText: 'Email',
-          icon: new Icon(
-            Icons.mail,
-            color: Colors.grey,
-          ),
+        decoration: BoxDecoration(
+          border: Border(
+              bottom:
+                  BorderSide(width: 0.0, color: CupertinoColors.inactiveGray)),
         ),
-        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-        onSaved: (value) => _email = value.trim(),
+        //validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+        //onSaved: (value) => _email = value.trim(),
       ),
     );
   }
@@ -166,11 +175,32 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
             borderRadius: new BorderRadius.circular(30.0),
           ),
           color: Colors.blue,
-          child: new Text(
-              _isLoginForm ? 'Login' : 'Create Account',
-              style: new TextStyle(fontSize: 20.0, color: Colors.white)
-          ),
-          onPressed: validateAndSubmit,
+          child: new Text(_isLoginForm ? 'Login' : 'Create Account',
+              style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+          onPressed: () {
+            if(fieldsAreEmpty()){
+              showCupertinoDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text('error'),
+                      content: Text('Email or Password are empty'),
+                      actions: <Widget>[
+                        FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('ok'))
+                      ],
+                    );
+                  });
+            }
+            else {
+              _email = _myEmailField.text.trim();
+              _password = _myPasswordField.text.trim();
+              validateAndSubmit();
+            }
+          },
         ),
       ),
     );
@@ -179,12 +209,33 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
   /// Builds secondary button for toggling between login/signup modes
   Widget showSecondaryButton() {
     return new FlatButton(
-      child: new Text(
-        _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-        style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-      ),
-      onPressed: toggleFormMode
-    );
+        child: new Text(
+          _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
+          style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+        ),
+        onPressed: () {
+          if(fieldsAreEmpty()){
+            showCupertinoDialog(
+                context: context,
+                builder: (context) {
+                  return CupertinoAlertDialog(
+                    title: Text('error'),
+                    content: Text('Email or Password are empty'),
+                    actions: <Widget>[
+                      FlatButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('ok'))
+                    ],
+                  );
+                });
+          } else {
+            _email = _myEmailField.text.trim();
+            _password = _myPasswordField.text.trim();
+            toggleFormMode();
+          }
+        });
   }
 
   /// Builds error messages from Firebase or invalid input
@@ -206,23 +257,26 @@ class LoginSignupScreenState extends State<LoginSignupScreen> {
     }
   }
 
+  TextEditingController _myPasswordField = TextEditingController();
+
   /// Builds TextFormField for password inputs
   Widget showPasswordInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: new CupertinoTextField(
+        controller: _myPasswordField,
+        prefix: Icon(Icons.lock, color: Colors.grey),
         maxLines: 1,
+        placeholder: "Password",
         obscureText: true,
         autofocus: false,
-        decoration: new InputDecoration(
-          hintText: 'Password',
-          icon: new Icon(
-            Icons.lock,
-            color: Colors.grey,
-          ),
+        decoration: BoxDecoration(
+          border: Border(
+              bottom:
+                  BorderSide(width: 0.0, color: CupertinoColors.inactiveGray)),
         ),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
-        onSaved: (value) => _password = value.trim(),
+        //validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        //onSaved: (value) => _password = value.trim(),
       ),
     );
   }
