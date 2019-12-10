@@ -13,7 +13,6 @@ import 'package:study_spaces/data_models/space.dart';
 class SearchSpaces extends StatelessWidget {
   SearchSpaces({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override
