@@ -121,10 +121,7 @@ class StudyStatsState extends State<StudyStats>{
 
   Widget _generateSpaceRow(StudySpace space) {
     if (space == null){
-      return Padding(
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
-        child: Text("You haven't studied anywhere yet!")
-      );
+      return CircularProgressIndicator();
     }
     return Padding(
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
@@ -152,7 +149,7 @@ class StudyStatsState extends State<StudyStats>{
         builder:(context, snapshot){
           if (!snapshot.hasData) {
             //return Text('Loading');
-            return Text("Loading");
+            return CircularProgressIndicator();
           }
           else{
             List<Review> reviews = [];
@@ -167,10 +164,8 @@ class StudyStatsState extends State<StudyStats>{
             //print(mostCommonSpace);
             if (mostCommonSpace == null) {
               return Center(
-                  child: new Text(
-                  "Start a study session by clicking on any study space",
-                  textAlign: TextAlign.center,
-              ));
+                  child: CircularProgressIndicator(),
+              );
             }
             else{
               return ListView(
