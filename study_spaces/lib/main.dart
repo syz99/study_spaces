@@ -30,6 +30,7 @@ import 'package:study_spaces/views/root.dart';
 //void main() => runApp(MyApp());
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
