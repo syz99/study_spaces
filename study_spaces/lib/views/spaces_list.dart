@@ -44,7 +44,7 @@ class SpacesList extends StatelessWidget {
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(18.0),
                                 side: BorderSide(color: Colors.red)),
-                            child: new Text('Add a new space'),
+                            child: new Text('Add'),
                             textColor: Colors.red,
                             onPressed: () {
                               Navigator.of(context).push<void>(CupertinoPageRoute(
