@@ -23,11 +23,11 @@ class SearchSpaces extends StatelessWidget {
     // TODO: implement build
     //return new MapSample();
     return new CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text('Google Maps View'),
-        ),
+//        navigationBar: CupertinoNavigationBar(
+//          middle: Text('Google Maps View'),
+//        ),
         child: new Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: new Column(children: <Widget>[
           new SizedBox(height: 750, child: new MapSample(userId)),
     ])),

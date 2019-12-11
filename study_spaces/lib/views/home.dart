@@ -11,6 +11,7 @@ import 'package:study_spaces/views/login.dart';
 import 'package:study_spaces/views/login_signup.dart';
 import 'package:study_spaces/views/search_spaces.dart';
 import 'package:study_spaces/views/spaces_list.dart';
+import 'package:study_spaces/views/study_stats.dart';
 
 import 'analytics.dart';
 
@@ -78,7 +79,8 @@ class HomeScreenState extends State<HomeScreen>{
             return SearchSpaces(widget.userId);
           }
            else if (index == 2) {
-            return Analytics();
+            //return Analytics();
+            return StudyStats(widget.userId);
           } else {
              signOut();
              return LoginSignupScreen();

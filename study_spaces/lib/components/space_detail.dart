@@ -75,6 +75,9 @@ class _SpaceDetailsState extends State<SpaceDetail>{
     //final List<Review> reviews = appState.getReviewsFromSpace(widget.id) as List<Review>;
 
     return CupertinoPageScaffold(
+//      navigationBar: CupertinoNavigationBar(
+//        heroTag: "map",
+//      transitionBetweenRoutes: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
