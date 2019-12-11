@@ -152,7 +152,6 @@ class StudyStatsState extends State<StudyStats>{
         builder:(context, snapshot){
           if (!snapshot.hasData) {
             //return Text('Loading');
-            print("help");
             return Text("Loading");
           }
           else{
@@ -167,7 +166,11 @@ class StudyStatsState extends State<StudyStats>{
 
             //print(mostCommonSpace);
             if (mostCommonSpace == null) {
-              return Text("Loading");
+              return Center(
+                  child: new Text(
+                  "Start a study session by clicking on any study space",
+                  textAlign: TextAlign.center,
+              ));
             }
             else{
               return ListView(

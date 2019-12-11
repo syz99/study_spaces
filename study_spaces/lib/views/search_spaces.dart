@@ -112,7 +112,7 @@ class MapSampleState extends State<MapSample> {
                 stream: getData(),
                 builder: (context, snapshot){
               if(!snapshot.hasData){
-                return Text('Loading');
+                return CircularProgressIndicator();
               }
               else if(currentLocation == null){
                 print("NULL");

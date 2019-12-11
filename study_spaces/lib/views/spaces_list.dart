@@ -79,8 +79,7 @@ class SpacesList extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         //return Text('Loading');
-                        print("help");
-                        return topInfo(dateString,context);
+                        return CircularProgressIndicator();
                       } else {
 
                         //MOVE ALL DOCUMENTS FROM [1] OVER TO [0]

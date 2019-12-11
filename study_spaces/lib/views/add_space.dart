@@ -29,7 +29,6 @@ class _MyAddSpaceState extends State<AddSpace> {
 
     if (validateAndSave()) {
       String userId = "";
-      print("pre try catch");
       try {
         DocumentReference inst = Firestore.instance.collection('spaces').document();
         String id = inst.documentID;
