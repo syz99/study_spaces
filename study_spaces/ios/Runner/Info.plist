@@ -49,5 +49,10 @@
 		<string>Always Permission</string>
 		<key>NSLocationAlwaysAndWhenInUsageDescription</key>
 		<string>Always And In Use Permission</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>googlechromes</string>
+			<string>comgooglemaps</string>
+		</array>
 	</dict>
 </plist>

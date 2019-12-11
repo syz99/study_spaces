@@ -79,11 +79,10 @@ class SpacesList extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         //return Text('Loading');
-                        return CircularProgressIndicator();
+                        return Text("Loading..");
                       } else {
 
                         //MOVE ALL DOCUMENTS FROM [1] OVER TO [0]
-                        print(snapshot);
                         List<DocumentSnapshot> docs = [];
                         for (DocumentSnapshot doc in snapshot.data.documents){
                           print(doc.data['userUID']);

@@ -121,7 +121,7 @@ class StudyStatsState extends State<StudyStats>{
 
   Widget _generateSpaceRow(StudySpace space) {
     if (space == null){
-      return CircularProgressIndicator();
+      return Text("...");
     }
     return Padding(
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
@@ -163,9 +163,7 @@ class StudyStatsState extends State<StudyStats>{
 
             //print(mostCommonSpace);
             if (mostCommonSpace == null) {
-              return Center(
-                  child: CircularProgressIndicator(),
-              );
+              return Text("...");
             }
             else{
               return ListView(
