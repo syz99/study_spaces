@@ -118,7 +118,7 @@ class SpacesCard extends StatelessWidget {
               //style: Styles.cardTitleText,
             ),
             Text(
-              "This is a space",
+              space.description,
               //style: Styles.cardDescriptionText,
             ),
           ],

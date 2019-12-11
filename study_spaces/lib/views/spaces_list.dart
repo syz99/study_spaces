@@ -59,11 +59,12 @@ class SpacesList extends StatelessWidget {
       ),
     );
   }
-  Stream<List<QuerySnapshot>> getData() {
-    Stream stream1 = Firestore.instance.collection('spaces').where('userId', isEqualTo: null).snapshots();
-    Stream stream2 = Firestore.instance.collection('spaces').where('userId', isEqualTo: userId).snapshots();
-    return StreamZip([stream1, stream2]);
-  }
+//  List<QuerySnapshot> getData() {
+//    Stream stream2 = Firestore.instance.collection('spaces').where('userUID', isEqualTo: userId).snapshots();
+//    Stream stream1 = Firestore.instance.collection('spaces').where('userUID', isEqualTo: null).snapshots();
+//    return stream1;
+//    //return StreamZip([stream2, stream1]);
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,8 @@ class SpacesList extends StatelessWidget {
         return  DecoratedBox(
                 decoration: BoxDecoration(color: Color(0xffffffff)),
                 child: StreamBuilder(
-                    stream: getData(),
+                    //stream: getData(),
+                  stream: Firestore.instance.collection('spaces').snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         //return Text('Loading');
@@ -82,25 +84,34 @@ class SpacesList extends StatelessWidget {
                       } else {
 
                         //MOVE ALL DOCUMENTS FROM [1] OVER TO [0]
-                        for (DocumentSnapshot doc in snapshot.data[1].documents){
-                          snapshot.data[0].documents.add(doc);
+                        print(snapshot);
+                        List<DocumentSnapshot> docs = [];
+                        for (DocumentSnapshot doc in snapshot.data.documents){
+                          print(doc.data['userUID']);
+                          if(doc.data['userUID'] != null){
+                            if(doc.data['userUID'] != userId){
+                              continue;
+                            }
+                          }
+                          docs.add(doc);
+                          //snapshot.data[0].documents.add(doc);
                         }
                         return ListView.builder(
-                          itemCount: snapshot.data[0].documents.length,
+                          itemCount: docs.length,
                           itemBuilder: (context, index) {
                             if (index == 0) {
                               return topInfo(dateString, context);
-                            } else if (index <=
-                                snapshot.data[0].documents.length) {
+                            } if (index <=
+                                docs.length) {
                               DocumentSnapshot myspace =
-                                  snapshot.data[0].documents[index];
+                                  docs[index];
                               return _generateSpaceRow(
                                   StudySpace.fromMap(myspace.data));
                             } else {
                               int relativeIndex =
-                                  index - (snapshot.data[0].documents.length + 2);
+                                  index - (docs.length + 2);
                               DocumentSnapshot myspace =
-                                  snapshot.data[0].documents[relativeIndex];
+                                  docs[relativeIndex];
                               return _generateSpaceRow(
                                   StudySpace.fromMap(myspace.data));
                             }

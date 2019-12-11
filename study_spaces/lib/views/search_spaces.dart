@@ -64,7 +64,8 @@ class MapSampleState extends State<MapSample> {
       //bearing: 192.8334901395799,
       target: LatLng(36.0019, -78.9403),
       //tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+      zoom: 18.151926040649414);
+
 
   // Code for current location
   void _currentLocation() async {
@@ -167,12 +168,13 @@ class MapSampleState extends State<MapSample> {
             child: new Text('To Duke Chapel'),
             textColor: Colors.blue,
             onPressed: _goToTheChapel),
-//          CupertinoButton(
-//            child: const Text('To Duke Chapel'),
-//            //icon: Icon(Icons.book),
-//            padding: EdgeInsets.zero,
-//            onPressed: _goToTheChapel,
-//          )
+          FlatButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.blue)),
+              child: new Text('To Current Location'),
+              textColor: Colors.blue,
+              onPressed: _goToMyself),
         ]
       )
 //      floatingActionButton: FloatingActionButton.extended(
@@ -186,6 +188,15 @@ class MapSampleState extends State<MapSample> {
   Future<void> _goToTheChapel() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(duke_chapel));
+  }
+
+  Future<void> _goToMyself() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      //bearing: 192.8334901395799,
+        target: LatLng(currentLocation.latitude, currentLocation.longitude),
+        //tilt: 59.440717697143555,
+        zoom: 18.151926040649414)));
   }
 }
 
